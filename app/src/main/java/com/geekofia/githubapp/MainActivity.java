@@ -19,14 +19,14 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-	// Global Instance Variable To Store Permission Code
+    // Global Instance Variable To Store Permission Code
     private static final int REQUEST_CODE_PERMISSION = 2;
-	
-	// Request Permission
+
+    // Request Permission
     private static String[] PERMISSIONS_REQ = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-	// Verify Permissions
+    // Verify Permissions
     private static boolean verifyPermissions(Activity activity) {
         // Check if we have write permission
         int WritePermision = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -42,28 +42,33 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     }
-
-	// Main Oncreate Method
+    // Main Oncreate Method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // Detecting Webview Area
         WebView mywebview = (WebView)findViewById(R.id.web1);
+        // New webview client Instance
         mywebview.setWebViewClient(new WebViewClient());
+        // WebSettings Instance Created
         WebSettings webSettings = mywebview.getSettings();
+        // Javascript Enabled
         webSettings.setJavaScriptEnabled(true);
+        // Zoom Implemented
+        webSettings.setBuiltInZoomControls(true);
+        // Zoom Controls Disabled
+        webSettings.setDisplayZoomControls(false);
+        // Home URL
         mywebview.loadUrl("https://github.com/");
-
-		// DownloadListener Initialized
+        // DownloadListener Initialized
         mywebview.setDownloadListener(new DownloadListener() {
-
-		// Creating Download Instance
+            // Creating Download Instance
             @Override
             public void onDownloadStart(String url, String userAgent,
                                         String contentDisposition, String mimeType,
                                         long contentLength) {
-				// Verifying If App Has The Runtime Permission
+                // Verifying If App Has The Runtime Permission
                 if(verifyPermissions(MainActivity.this)){
                     DownloadManager.Request request = new DownloadManager.Request(
                             Uri.parse(url));
@@ -86,6 +91,6 @@ public class MainActivity extends AppCompatActivity {
                     //prompt user for permission
                 }
 
-        }});
+            }});
     }
 }
