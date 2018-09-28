@@ -19,10 +19,14 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+	// Global Instance Variable To Store Permission Code
     private static final int REQUEST_CODE_PERMISSION = 2;
+	
+	// Request Permission
     private static String[] PERMISSIONS_REQ = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+	// Verify Permissions
     private static boolean verifyPermissions(Activity activity) {
         // Check if we have write permission
         int WritePermision = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+	// Main Oncreate Method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,13 +55,15 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         mywebview.loadUrl("https://github.com/");
 
-        mywebview.setDownloadListener(new DownloadListener()
-        {
+		// DownloadListener Initialized
+        mywebview.setDownloadListener(new DownloadListener() {
 
+		// Creating Download Instance
             @Override
             public void onDownloadStart(String url, String userAgent,
                                         String contentDisposition, String mimeType,
                                         long contentLength) {
+				// Verifying If App Has The Runtime Permission
                 if(verifyPermissions(MainActivity.this)){
                     DownloadManager.Request request = new DownloadManager.Request(
                             Uri.parse(url));
@@ -76,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Downloading File",
                             Toast.LENGTH_LONG).show();
                 }else{
-//prompt user for permission
+                    //prompt user for permission
                 }
 
-            }});
+        }});
     }
 }
