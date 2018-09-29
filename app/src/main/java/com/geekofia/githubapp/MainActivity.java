@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.URLUtil;
@@ -19,8 +20,12 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    // mywebview is now globally declared and protected
+    protected WebView  mywebview;
+
     // Global Instance Variable To Store Permission Code
     private static final int REQUEST_CODE_PERMISSION = 2;
+
 
     // Request Permission
     private static String[] PERMISSIONS_REQ = {
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Detecting Webview Area
-        WebView mywebview = (WebView)findViewById(R.id.web1);
+        mywebview = (WebView)findViewById(R.id.web1);
         // New webview client Instance
         mywebview.setWebViewClient(new WebViewClient());
         // WebSettings Instance Created
@@ -93,4 +98,22 @@ public class MainActivity extends AppCompatActivity {
 
             }});
     }
+    // Going back when back button is pressed
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    if (mywebview.canGoBack()) {
+                        mywebview.goBack();
+                    } else {
+                        finish();
+                    }
+                    return true;
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
+
