@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     // Main Oncreate Method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.splashScreenTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Detecting Webview Area
