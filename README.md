@@ -3,8 +3,8 @@
 
 **Clean Light Android App for GitHub.**
 
-![Screenshots](./screenshots/ss-001.jpg?raw=true)
-![Screenshots](./screenshots/ss-002.jpg?raw=true)
-![Screenshots](./screenshots/ss-003.jpg?raw=true)
-![Screenshots](./screenshots/ss-004.jpg?raw=true)
-![Screenshots](./screenshots/ss-005.jpg?raw=true)
+![Screenshots](./screenshots/ss-001.png?raw=true)
+![Screenshots](./screenshots/ss-002.png?raw=true)
+![Screenshots](./screenshots/ss-003.png?raw=true)
+![Screenshots](./screenshots/ss-004.png?raw=true)
+![Screenshots](./screenshots/ss-005.png?raw=true)
